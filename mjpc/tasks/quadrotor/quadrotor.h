@@ -52,7 +52,6 @@ class Quadrotor : public Task {
   ResidualFn* InternalResidual() override { return &residual_; }
 
  private:
-  int current_mode_ = 0;
   ResidualFn residual_;
 };
 }  // namespace mjpc
