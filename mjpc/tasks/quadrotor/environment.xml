@@ -1,0 +1,66 @@
+
+<mujoco model="Skydio X2 scene">
+
+  <statistic center="0 0 0.1" extent="2.0" meansize=".05"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-20" elevation="-20" ellipsoidinertia="true"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    <geom name="walls_front" type="box" pos="5 0 0" size="0.2 5 5" rgba="0.5 0.5 0.5 0.5" contype="2" conaffinity="1"/>
+    <geom name="walls_left" type="box" pos="-10 5 0" size="15 0.2 5" rgba="0.5 0.5 0.5 0.5" contype="2" conaffinity="1"/>
+    <geom name="walls_right" type="box" pos="-10 -5 0" size="15 0.2 5" rgba="0.5 0.5 0.5 0.5" contype="2" conaffinity="1"/>
+    <geom name="walls_back" type="box" pos="-25 0 0" size="0.2 5 5" rgba="0.5 0.5 0.5 0.5" contype="2" conaffinity="1"/>
+    <geom name="walls_ceiling" type="box" pos="-10 0 5" size="15 5 0.2" rgba="0.5 0.5 0.5 0.5" contype="2" conaffinity="1"/>
+    
+    <body name="goal" pos="-21.457698789188303 -3.656357558875988 3.1495886283158105">
+      <geom type="sphere" size="0.1" rgba="0 1 0 0.5" contype="0" conaffinity="0"/>
+    </body>
+    <!-- <geom name="box0" type="box" pos="-11.082168432345062 -1.9594477940846264 1.0470708645395919" size="0.5595928518309905 0.5595928518309905 2.0941417290791837" rgba="1 0 0 1"/>
+<geom name="box1" type="box" pos="-18.310527438063772 2.3097868090841054 1.2864946350958306" size="0.22267798121760507 0.22267798121760507 2.5729892701916612" rgba="1 0 0 1"/>
+<geom name="box2" type="box" pos="-6.278958515757044 -0.537863456759573 0.7790033522712418" size="0.20168484268088857 0.20168484268088857 1.5580067045424837" rgba="1 0 0 1"/>
+<geom name="box3" type="box" pos="-15.882280017131851 1.7723202587262605 1.3718556948949285" size="0.956216556443138 0.956216556443138 2.743711389789857" rgba="1 0 0 1"/>
+<geom name="box4" type="box" pos="-19.541974502117707 -3.7552801357315717 1.4208939116120638" size="0.6331299782347972 0.6331299782347972 2.8417878232241276" rgba="1 0 0 1"/>
+<geom name="box5" type="box" pos="-16.101210851648958 -0.9503660984943005 0.23775302384732833" size="0.5376932604661739 0.5376932604661739 0.47550604769465665" rgba="1 0 0 1"/>
+<geom name="box6" type="box" pos="-12.118023314289703 -2.2264666698157196 0.5030097853348444" size="0.5966497931054806 0.5966497931054806 1.0060195706696888" rgba="1 0 0 1"/>
+<geom name="box7" type="box" pos="-16.061941327921605 -2.1530676676721257 0.5767160989676312" size="0.567682772590187 0.567682772590187 1.1534321979352624" rgba="1 0 0 1"/>
+<geom name="box8" type="box" pos="-4.923596438073689 -3.828082357872729 1.0349826718121793" size="0.6451634581219468 0.6451634581219468 2.0699653436243586" rgba="1 0 0 1"/>
+<geom name="box9" type="box" pos="-2.1342185808308294 -2.5127498728422584 0.35715694774754836" size="0.887957223036232 0.887957223036232 0.7143138954950967" rgba="1 0 0 1"/>
+
+      <body name="box_dynamic0" pos="-7.013280663501169 0 1.4300846454794058">
+        <joint name="slide0" type="slide" axis="0 -1 0" range="-4 4"/>
+        <geom name="box_dynamic_geom0" mass="1.0" type="box" size="0.7689534157562237 0.7689534157562237 1.4300846454794058" rgba="1 0 0 1" contype="2" conaffinity="1"/>
+      </body>
+      
+      <body name="box_dynamic1" pos="-5.059357521062113 0 0.7337053620262094">
+        <joint name="slide1" type="slide" axis="0 -1 0" range="-4 4"/>
+        <geom name="box_dynamic_geom1" mass="1.0" type="box" size="0.7362444531312569 0.7362444531312569 0.7337053620262094" rgba="1 0 0 1" contype="2" conaffinity="1"/>
+      </body>
+      
+      <body name="box_dynamic2" pos="-4.115377985026562 0 0.9558122026375605">
+        <joint name="slide2" type="slide" axis="0 -1 0" range="-4 4"/>
+        <geom name="box_dynamic_geom2" mass="1.0" type="box" size="0.8769579347426502 0.8769579347426502 0.9558122026375605" rgba="1 0 0 1" contype="2" conaffinity="1"/>
+      </body>
+      
+      <body name="box_dynamic3" pos="-19.37853505727585 0 1.277144672309733">
+        <joint name="slide3" type="slide" axis="0 -1 0" range="-4 4"/>
+        <geom name="box_dynamic_geom3" mass="1.0" type="box" size="0.3941919788344541 0.3941919788344541 1.277144672309733" rgba="1 0 0 1" contype="2" conaffinity="1"/>
+      </body>
+      
+      <body name="box_dynamic4" pos="-16.885866771577085 0 1.1733448382721947">
+        <joint name="slide4" type="slide" axis="0 -1 0" range="-4 4"/>
+        <geom name="box_dynamic_geom4" mass="1.0" type="box" size="0.6390390091105225 0.6390390091105225 1.1733448382721947" rgba="1 0 0 1" contype="2" conaffinity="1"/>
+      </body> -->
+      </worldbody></mujoco>
