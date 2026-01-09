@@ -44,6 +44,7 @@ class Quadrotor : public Task {
 
   Quadrotor() : residual_(this) {}
   void TransitionLocked(mjModel* model, mjData* data) override;
+  void ResetLocked(const mjModel* model) override;
 
  protected:
   std::unique_ptr<mjpc::ResidualFn> ResidualLocked() const override {
@@ -52,6 +53,8 @@ class Quadrotor : public Task {
   ResidualFn* InternalResidual() override { return &residual_; }
 
  private:
+  bool goal_reached_ = false;
+  int current_mode_ = 0;
   ResidualFn residual_;
 };
 }  // namespace mjpc
